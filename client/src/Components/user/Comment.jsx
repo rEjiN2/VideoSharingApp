@@ -1,4 +1,6 @@
-import React from 'react'
+
+import axios from '../../utils/axios';
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 
 
@@ -37,19 +39,30 @@ const Text = styled.span`
 `;
 
 
-function Comment() {
+function Comment({comment}) {
+ 
+const [user ,setUser] = useState({})
+
+useEffect(()=>{
+
+  const fetchComment = async ()=>{
+    const user = await axios.get(`/users/find/${comment?.userId}`)
+    
+    setUser(user?.data)
+  }
+  fetchComment();
+  
+},[comment.userId])
+
   return (
     <Container>
-      <Avatar src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" />
+      <Avatar src={user?.image} />
       <Details>
         <Name>
-          Jhil <Date>1 day ago</Date>
+          {user?.name} <Date>1 day ago</Date>
         </Name>
         <Text>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, ex
-          laboriosam ipsam aliquam voluptatem perferendis provident modi, sequi
-          tempore reiciendis quod, optio ullam cumque? Quidem numquam sint
-          mollitia totam reiciendis?
+          {comment?.description}
         </Text>
       </Details>
     </Container>

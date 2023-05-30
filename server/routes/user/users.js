@@ -1,6 +1,6 @@
 import express from 'express';
-import { deleteUser, dislikeVideo, getUser, likeVideo, subscribeUser, unsubscribeUser, update } from '../controllers/user.js';
-import { verifyToken } from '../verifyToken.js';
+import { deleteUser, dislikeVideo, notification,suspendUser, getUser,reportUser, likeVideo, subscribeUser, unsubscribeUser, update, usersList, viewedNotification } from '../../controllers/userController/user.js';
+import { verifyToken } from '../../verifyToken.js';
 
 const router = express.Router();
 
@@ -34,5 +34,15 @@ router.put("/like/:videoId",verifyToken ,likeVideo)
 //dislikeVideo
 
 router.put("/disLike/:videoId",verifyToken ,dislikeVideo)
+
+router.get('/userList' , usersList)
+
+router.put('/report/:id' , reportUser )
+
+router.put('/suspend/:id' , suspendUser)
+
+router.get('/notifications' , notification)
+
+router.post('/notificationUpdate' ,viewedNotification)
 
 export default router;

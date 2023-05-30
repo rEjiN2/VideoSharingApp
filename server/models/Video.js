@@ -42,8 +42,32 @@ const VideoSchema = new mongoose.Schema({
     disLikes:{
         type:[String],
         default:[]
-    }
-    
+    },
+    watched: {
+        type: Boolean,
+        default: false,
+    },
+    watchedAt: {
+        type: Date,
+        expires: 259200, // The value is in seconds (3 days)
+    },
+    report:{
+      type:Number,
+      default:0
+    },
+    verified: {
+        type: Boolean,
+        default: false,
+      },
+      verifiedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Admin',
+      },
+      blocked:{
+        type:Boolean,
+        default:false,
+      }
+
 },
 {timestamps:true}
 );

@@ -12,11 +12,13 @@ const UserSchema = new mongoose.Schema({
         unique:true,
     },
     password:{
-        type:String,
-      
-        
+        type:String,    
     },
-    img:{
+    isAdmin: {
+     type:Boolean,
+     default:false,
+    },
+    image:{
         type:String 
     },
     subscribers:{
@@ -30,7 +32,50 @@ const UserSchema = new mongoose.Schema({
     fromGoogle:{
         type: Boolean,
         default:false
-    }
+    },
+    report:{
+      type:Number,
+      default:0
+    },
+    watchHistory: [{
+        video: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'VIDEO'
+        },
+        watchedAt: {
+            type: Date,
+            default: Date.now(),
+            expires: 259200, 
+        }
+    }],
+    suspended: {
+        type: Boolean,
+        default: false,
+    },
+    suspensionEndDate: {
+        type: Date,
+        default: null,
+    },
+    online:{
+        type:Boolean,
+        default:false
+    },
+    notifications: [
+      {
+        message: {
+          type: String,
+          
+        },
+        viewed:{
+            type:Boolean,
+            default:false
+        },
+        timestamp: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ]
 },
 {timestamps:true}
 );

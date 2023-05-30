@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Card from '../Components/Card'
-import axios from '../utils/axios'
+import Card from '../../Components/user/Card'
+import axios from '../../utils/axios'
 
 const Container = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import trendTube from '../img/lo1.png'
+import trendTube from '../../img/lo1.png'
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
@@ -27,7 +27,16 @@ background-color:${({theme}) => theme.bgLighter}};
 color:${({theme})=>theme.text};
 height:100vh;
 position:sticky;
+overflow-y: auto;
 top:0;
+scrollbar-width: none; 
+&::-webkit-scrollbar {
+  display: none; 
+}
+@media screen and (max-width: 768px) {
+  position: static; 
+  height: auto; 
+}
 `
 const Wrapper = styled.div`
 padding:18px 26px;
@@ -125,15 +134,19 @@ function Sidebar({darkMode,setDarkMode}) {
         </Item>
         </Link>
         <Hr/>
-        <Item>
+        <Link to="myvideos" style={{textDecoration:"none" , color:'inherit'}}>
+        <Item >
           <VideoLibraryOutlinedIcon />
-          Library
+          My Videos
         </Item>
+        </Link>
          <Br/>
+         <Link to="history" style={{textDecoration:"none" , color:'inherit'}}>
         <Item>
           <HistoryOutlinedIcon />
           History
         </Item>
+         </Link>
         <Hr/>
         { !currentUser && 
           <><Login>
