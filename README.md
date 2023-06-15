@@ -67,13 +67,13 @@ To run the project locally, follow these steps:
 
 1. Clone the repository: `git clone <repository-url>`
 2. Install dependencies for the frontend and backend:
-   - Frontend: `cd frontend && npm install`
-   - Backend: `cd backend && npm install`
+   - Frontend: `cd client && npm install`
+   - Backend: `cd server && npm install`
 3. Configure the necessary environment variables:
    - Create a `.env` file in the `backend` directory and set the required variables such as database connection details, API keys, and secret keys.
 4. Start the development servers:
-   - Frontend: `cd frontend && npm start`
-   - Backend: `cd backend && npm start`
+   - Frontend: `cd client && npm start`
+   - Backend: `cd server && npm start`
 5. Access the app in your browser at `http://localhost:3000`.
 
 ## Contribution
